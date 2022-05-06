@@ -2,23 +2,6 @@ var express = require('express');
 var router = express.Router();
 const Acronym = require('./../models/acronym');
 
-
-router.get('/', async function(req, res, next) {
-  try {
-    for (var i = 0; i < 21; i++){
-    const acronym = new Acronym({
-      acronym: "2G2BT" + i.toString(),
-      definition: "Too Good To Be True",
-    });
-    acronym.save();
-  }
-    
-  } catch {
-		res.status(400);
-		res.send({ error: "Required input missing." });
-	}
-});
-
 /* GET acronym list. */
 router.get('/acronym', async function(req, res, next) {
   try {
@@ -65,7 +48,7 @@ router.post('/acronym', async function(req, res, next) {
 /* PATCH update acronym. */
 router.patch('/acronym/:acronymID', async function(req, res, next) {
   try {
-		const acronym = await Acronym.findOne({ _id: req.params.acronymID });
+		const acronym = await Acronym.findOne({ acronym: req.params.acronymID });
 
 		if (req.body.acronym) {
 			acronym.acronym = req.body.acronym;
@@ -86,7 +69,7 @@ router.patch('/acronym/:acronymID', async function(req, res, next) {
 /* DELETE delete acronym. */
 router.delete('/acronym/:acronymID', async function(req, res, next) {
   try {
-		await Acronym.deleteOne({ _id: req.params.acronymID });
+		await Acronym.deleteOne({ acronym: req.params.acronymID });
 		res.status(204).send();
 	} catch {
 		res.status(404);
