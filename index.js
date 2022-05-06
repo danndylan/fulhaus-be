@@ -19,14 +19,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Connect to MongoDB database
-const express = require("express")
-const mongoose = require("mongoose")
+// connect to MongoDB database
+const mongoose = require("mongoose");
+mongoose.Promise = global.Promise;
+mongoose.connect("mongodb://localhost:27017/acronym", {});
 
-mongoose.connect("mongodb://localhost:27017/acronym", { useNewUrlParser: true })
+app.use(express.json());
 
+// route API
 app.use('/api', apiRouter);
-app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
