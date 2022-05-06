@@ -7,7 +7,8 @@ These software need to be installed on your machine first:
 Follow these steps for running the app:
 1. Clone the source code from the public repository:
 https://github.com/danndylan/fulhaus-be.git
-2. From where the repository is clone, open a terminal. This API is created using express-generator. To start the app, run this command depending on environment:
+2. Check out `develop` branch.
+3. From where the repository is clone, open a terminal. This API is created using express-generator. To start the app, run this command depending on environment:
 
     On MacOS or Linux, run the app with this command:
 
